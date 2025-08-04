@@ -29,7 +29,11 @@ export default function LoginForm({
       navigate("/home");
     } catch (err) {
       console.error("Login error", err);
-      setError(err.message);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred.");
+      }
     }
   };
   return (
@@ -117,13 +121,16 @@ export default function LoginForm({
             </div>
           </form>
 
-          <div className="bg-muted relative hidden md:block">
-            <img
-              src="/placeholder.svg"
-              alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-            />
-          </div>
+          <div className="relative hidden md:block h-full w-full">
+  <img
+    src="https://i.pinimg.com/736x/86/7f/64/867f64a2e70b153b07da4c0a2247de09.jpg"
+    alt="Login Illustration"
+    className="h-full w-full object-cover rounded-r-md"
+  />
+  <div className="absolute inset-0 bg-black/40 rounded-r-md"></div>
+</div>
+
+
         </CardContent>
       </Card>
 
